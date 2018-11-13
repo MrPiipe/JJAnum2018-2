@@ -1,10 +1,12 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
+import {AlertService} from './alert.service';
+
 @Injectable()
 export class ApiService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private alert: AlertService) {
   }
 
   get(url) {
@@ -19,7 +21,12 @@ export class ApiService {
     return this.http.post(url, params).toPromise().then(result => {
       return result;
     }, err => {
+      // this.alert.show('Error', 'Something Went Wrong');
       console.log(err);
+      err.aproximations = '';
+      err.aproximation = '';
+      err.error = 'Something Went Wrong';
+      return err
     });
   }
 }
