@@ -1,15 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ 'CARDS_TITLE' | translate }}</ion-title>
+    <ion-title>Numerical Analysis</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let item of cardItems" (click)="open(item)">
+  <ion-card *ngFor="let item of cardItems"
+            (click)="open(item)">
     <ion-item>
-      <h2>{{item.user.name}}</h2>
+      <h1>{{item.user.name}}</h1>
     </ion-item>
-    <img [src]="item.image">
     <ion-card-content>
       <p>{{item.content}}</p>
     </ion-card-content>

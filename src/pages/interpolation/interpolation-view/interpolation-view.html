@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="factorization"
+       padding-right>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label for="dimension">
+            Dimension:
+          </ion-label>
+          <ion-input type="text"
+                     [(ngModel)]="dimension"
+                     name="dimension">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button
+                type="button"
+                (click)="setupMatrix()">
+          Setup Matrix
+        </button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <form (ngSubmit)="onSubmit()"
+        class="factorization">
+    <div class="factorization"
+         padding-right
+         *ngIf="showForm">
+      <ion-scroll scrollY="true"
+                  scrollX="true"
+                  zoom="true"
+                  style="height:40vh;">
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <span>Array X</span>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <table class="input-table">
+              <tr>
+                <td *ngFor="let i of matrix; let k = index">
+                  <ion-input class='inputMatrix'
+                             type="number"
+                             [(ngModel)]="arrayX[i]"
+                             [ngModelOptions]="{standalone: true}">
+                  </ion-input>
+                </td>
+              </tr>
+            </table>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <span>Array Y</span>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <table class="input-table">
+              <tr>
+                <td *ngFor="let i of matrix; let k = index">
+                  <ion-input class='inputMatrix'
+                             type="number"
+                             [(ngModel)]="arrayY[i]"
+                             [ngModelOptions]="{standalone: true}">
+                  </ion-input>
+                </td>
+              </tr>
+            </table>
+          </ion-col>
+        </ion-row>
+        <ion-row col-6>
+          <ion-item>
+            <ion-label for="evaluate">
+              Evaluate X =
+            </ion-label>
+            <ion-input type="number"
+                       [(ngModel)]="evaluate"
+                       name="evaluate">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-scroll>
+      <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col col-10>
+          <button ion-button
+                  (click)="help()"
+                  type="button">
+            Help
+          </button>
+          <button class="submit-button"
+                  ion-button
+                  type="submit">
+            Submit
+          </button>
+          <button ion-button
+                  (click)="theoricHelp()"
+                  type="button">
+            Theoric Help
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+  <div *ngIf="showResultUser">
+    <ion-scroll scrollY="true"
+                scrollX="true"
+                zoom="true"
+                style="height:100vh;">
+      <ion-row>
+        <ion-col col-12>
+          <ion-card>
+            <ion-card-header>The Function:</ion-card-header>
+            <ion-card-content *ngIf="!spline">{{finalResult}}</ion-card-content>
+            <ion-card-content *ngIf="spline">
+              <p *ngFor="let item of finalResult">{{item}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="vandermonde">
+        <ion-col col-12>
+          <ion-card>
+            <ion-card-header>Vandermonde Matrix:</ion-card-header>
+            <ion-card-content>
+              <table class="table"
+                     align="center"
+                     class="matrix">
+                <tr *ngFor="let i of vandermondeMatrix"
+                    class="table">
+                  <td *ngFor="let j of i"
+                      class="style-t-c">
+                    {{j}}
+                  </td>
+                </tr>
+              </table>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-card>
+            <ion-card-header>The Function Evaluated in p({{evaluate}}):</ion-card-header>
+            <ion-card-content>{{finalEvaluate}}</ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-scroll>
+  </div>
+</ion-content>

@@ -1,0 +1,224 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <form (ngSubmit)="onSubmit()">
+    <div class="one-variable"
+         padding-right>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label for="viewFunction">
+              f(x) =
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="viewFunction"
+                       name="viewFunction">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="enablePrimeFunction">
+        <ion-col col-12>
+          <ion-item>
+            <ion-label for="primeFunction">
+              f'(x) =
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="primeFunction"
+                       name="primeFunction">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="enableDoublePrimeFunction">
+        <ion-col col-12>
+          <ion-item>
+            <ion-label for="doublePrimeFunction">
+              f''(x) =
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="doublePrimeFunction"
+                       name="doublePrimeFunction">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-row col-6>
+          <ion-item>
+            <ion-label for="initialX">
+              Initial X
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="initialX"
+                       name="initialX">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row col-6
+                 *ngIf="enableFinalX">
+          <ion-item>
+            <ion-label for="finalX">
+              Final X
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="finalX"
+                       name="finalX">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row col-6
+                 *ngIf="enableDelta">
+          <ion-item>
+            <ion-label for="delta">
+              Delta
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="delta"
+                       name="delta">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-row>
+
+      <ion-row>
+        <ion-row col-6
+                 *ngIf="enableTolerance">
+          <ion-item>
+            <ion-label for="tolerance">
+              Tolerance
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="tolerance"
+                       name="tolerance">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row col-6>
+          <ion-item>
+            <ion-label for="iterations">
+              Iterations
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="iterations"
+                       name="iterations">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-row>
+
+      <ion-row *ngIf="enableErrorChoice">
+        <ion-col col-12>
+          <ion-item>
+            <ion-label for="errorChoice">
+              Error Type
+            </ion-label>
+            <ion-select [(ngModel)]="errorChoice"
+                        name="errorChoice">
+              <ion-option value="1">
+                Absolute Error
+              </ion-option>
+              <ion-option value="2">
+                Relative Error
+              </ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button
+                  (click)="help()"
+                  type="button">
+            Help
+          </button>
+          <button class="submit-button"
+                  ion-button
+                  type="submit">
+            Submit
+          </button>
+          <button ion-button
+                  (click)="graph()"
+                  type="button">
+            Graph
+          </button>
+          <button ion-button
+                  (click)="theoricHelp()"
+                  type="button">
+            Theoric Help
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+
+  <div>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card *ngIf="showResultUser">
+          <ion-card-content>{{finalResult}}</ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="auxGrid"
+       *ngIf="visibleResult">
+    <ion-scroll scrollY="true"
+                scrollX="true"
+                zoom="true"
+                style="height:100vh;">
+      <table *ngIf="visibleResultTable">
+        <tr>
+          <th *ngFor="let title of resultTitles"
+              class="style-t-t">
+            <p class="text-t-t">
+              {{title}}
+            </p>
+          </th>
+        </tr>
+        <tr *ngFor="let content of results">
+          <th *ngFor="let position of content"
+              class="style-t-c">
+            <p class="text-t-c">
+              {{position}}
+            </p>
+          </th>
+        </tr>
+      </table>
+
+      <button ion-button
+              (click)="visibleTable = !visibleTable"
+              type="button">
+        Show Iterations Table
+      </button>
+      <table *ngIf="visibleTable">
+        <tr>
+          <th *ngFor="let title of tableTitles"
+              class="style-t-t">
+            <p class="text-t-t">
+              {{title}}
+            </p>
+          </th>
+        </tr>
+        <tr *ngFor="let content of table">
+          <th *ngFor="let position of content"
+              class="style-t-c">
+            <p class="text-t-c">
+              {{position}}
+            </p>
+          </th>
+        </tr>
+      </table>
+    </ion-scroll>
+  </div>
+</ion-content>

@@ -1,0 +1,246 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="factorization"
+       padding-right>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label for="dimension">
+            Dimension:
+          </ion-label>
+          <ion-input type="text"
+                     [(ngModel)]="dimension"
+                     name="dimension">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button
+                type="button"
+                (click)="setupMatrix()">
+          Setup Matrix
+        </button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="factorization"
+         padding-right
+         *ngIf="showForm">
+      <ion-row>
+        <ion-row col-6>
+          <ion-item>
+            <ion-label for="tolerance">
+              Tolerance
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="tolerance"
+                       name="tolerance">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row col-6>
+          <ion-item>
+            <ion-label for="iterations">
+              Iterations
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="iterations"
+                       name="iterations">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row col-6
+                 *ngIf="enableW">
+          <ion-item>
+            <ion-label for="w">
+              W
+            </ion-label>
+            <ion-input type="text"
+                       [(ngModel)]="w"
+                       name="w">
+            </ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-row>
+      <ion-scroll scrollY="true"
+                  scrollX="true"
+                  zoom="true"
+                  style="height:40vh;">
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <span>Matrix A</span>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <table class="input-table">
+              <tr *ngFor="let i of matrix; let k = index">
+                <td *ngFor="let j of matrix">
+                  <ion-input class='inputMatrix'
+                             type="number"
+                             [(ngModel)]="matrixA[i+j]"
+                             [ngModelOptions]="{standalone: true}">
+                  </ion-input>
+                </td>
+              </tr>
+            </table>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <span>Vector B</span>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <table class="input-table">
+              <tr>
+                <td *ngFor="let i of matrix">
+                  <ion-input class='inputMatrix'
+                             type="number"
+                             [(ngModel)]="matrixB[i]"
+                             [ngModelOptions]="{standalone: true}">
+                  </ion-input>
+                </td>
+              </tr>
+            </table>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <span>Vector X0</span>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <table class="input-table">
+              <tr>
+                <td *ngFor="let i of matrix">
+                  <ion-input class='inputMatrix'
+                             type="number"
+                             [(ngModel)]="matrixX0[i]"
+                             [ngModelOptions]="{standalone: true}">
+                  </ion-input>
+                </td>
+              </tr>
+            </table>
+          </ion-col>
+        </ion-row>
+      </ion-scroll>
+      <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col col-10>
+          <button ion-button
+                  (click)="help()"
+                  type="button">
+            Help
+          </button>
+          <button class="submit-button"
+                  ion-button
+                  type="submit">
+            Submit
+          </button>
+          <button ion-button
+                  (click)="theoricHelp()"
+                  type="button">
+            Theoric Help
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+  <div *ngIf="showResultUser">
+    <ion-scroll scrollY="true"
+                scrollX="true"
+                zoom="true"
+                style="height:100vh;">
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-content>
+              <ion-label>
+                System Solution:
+              </ion-label>
+              <ion-scroll scrollX="true"
+                          zoom="true"
+                          style="height:10vh;">
+                <table class="table"
+                       align="center">
+                  <tr class="table">
+                    <th *ngFor="let i of matrix"
+                        class="style-t-t">
+                      X{{i}}
+                    </th>
+                  </tr>
+                  <tr class="table">
+                    <td *ngFor="let content of results"
+                        class="style-t-c">
+                      <p>{{content}}</p>
+                    </td>
+                  </tr>
+                </table>
+              </ion-scroll>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <button ion-button
+              (click)="visibleTable = !visibleTable"
+              type="button">
+        Show Iterations Table
+      </button>
+      <table *ngIf="visibleTable">
+        <tr>
+          <th class="style-t-t">
+            <p class="text-t-t">
+              i
+            </p>
+          </th>
+          <th *ngFor="let i of matrix"
+              class="style-t-t">
+            <p class="text-t-t">
+              X{{i}}
+            </p>
+          </th>
+          <th class="style-t-t">
+            <p class="text-t-t">
+              Error
+            </p>
+          </th>
+        </tr>
+        <tr *ngFor="let content of table">
+          <td class="style-t-c">
+            <p class="text-t-c">
+              {{content[0]}}
+            </p>
+          </td>
+          <td *ngFor="let position of content[1]"
+              class="style-t-c">
+            <p class="text-t-c">
+              {{position}}
+            </p>
+          </td>
+          <td class="style-t-c">
+            <p class="text-t-c">
+              {{content[2]}}
+            </p>
+          </td>
+        </tr>
+      </table>
+    </ion-scroll>
+  </div>
+</ion-content>

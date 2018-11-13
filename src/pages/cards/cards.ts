@@ -17,24 +17,21 @@ export class CardsPage {
           name: 'One Variable Equations'
         },
         nextState: 'OneVariablePage',
-        image: 'assets/img/advance-card-bttf.png',
-        content: 'Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.'
+        content: 'In this section you can find the methods you need to solve One Variable Equation Problems'
       },
       {
         user: {
           name: 'Systems of Equations'
         },
         nextState: 'EquationSystemsPage',
-        image: 'assets/img/advance-card-tmntr.jpg',
-        content: 'I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.'
+        content: 'In this section you can find the methods you need to solve System of Equations Problems'
       },
       {
         user: {
           name: 'Interpolation'
         },
         nextState: 'InterpolationPage',
-        image: 'assets/img/advance-card-jp.jpg',
-        content: 'Your scientists were so preoccupied with whether or not they could, that they didn\'t stop to think if they should.'
+        content: 'In this section you can find the methods you need to solve Interpolation Problems'
       }
     ];
 

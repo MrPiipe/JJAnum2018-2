@@ -10,8 +10,13 @@ page-welcome {
   }
 
   @keyframes animatedBackground {
-    from { background-position: 0 0; }
-    to { background-position: 100% 0; }
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: 100% 0;
+    }
   }
 
   .splash-info {
@@ -20,6 +25,7 @@ page-welcome {
     margin-top: -64px;
     text-align: center;
   }
+
   .splash-logo {
     margin: auto;
     background: url('../assets/img/appicon.png') repeat transparent;
@@ -27,12 +33,14 @@ page-welcome {
     width: 128px;
     height: 128px;
   }
+
   .splash-intro {
     font-size: 18px;
     font-weight: bold;
     max-width: 80%;
     margin: auto;
   }
+
   button.login {
     margin-top: 25px;
     background-color: white;

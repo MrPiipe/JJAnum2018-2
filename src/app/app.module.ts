@@ -4,27 +4,17 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {Camera} from '@ionic-native/camera';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {StatusBar} from '@ionic-native/status-bar';
-import {IonicStorageModule, Storage} from '@ionic/storage';
+import {IonicStorageModule} from '@ionic/storage';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
-import {Items} from '../mocks/providers/items';
-import {Api, Settings, User} from '../providers';
+import {ApiService} from '../providers';
 import {MyApp} from './app.component';
+import {AlertService} from '../providers/services/alert.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
-
-export function provideSettings(storage: Storage) {
-  return new Settings(storage, {
-    option1: true,
-    option2: 'Ionitron J. Framework',
-    option3: '3',
-    option4: 'Hello'
-  });
 }
 
 @NgModule({
@@ -49,13 +39,10 @@ export function provideSettings(storage: Storage) {
     MyApp
   ],
   providers: [
-    Api,
-    Items,
-    User,
+    ApiService,
+    AlertService,
     Camera,
     SplashScreen,
-    StatusBar,
-    {provide: Settings, useFactory: provideSettings, deps: [Storage]},
     // Keep this to enable Ionic's runtime error handling during development
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

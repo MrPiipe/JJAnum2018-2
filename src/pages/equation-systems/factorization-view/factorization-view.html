@@ -1,0 +1,215 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="factorization"
+       padding-right>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label for="dimension">
+            Dimension:
+          </ion-label>
+          <ion-input type="text"
+                     [(ngModel)]="dimension"
+                     name="dimension">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button
+                type="button"
+                (click)="setupMatrix()">
+          Setup Matrix
+        </button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="factorization"
+         padding-right
+         *ngIf="showForm">
+      <ion-scroll scrollY="true"
+                  scrollX="true"
+                  zoom="true"
+                  style="height:50vh;">
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <span>Matrix A</span>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <table class="input-table">
+              <tr *ngFor="let i of matrix; let k = index">
+                <td *ngFor="let j of matrix">
+                  <ion-input class='inputMatrix'
+                             type="number"
+                             [(ngModel)]="matrixA[i+j]"
+                             [ngModelOptions]="{standalone: true}">
+                  </ion-input>
+                </td>
+              </tr>
+            </table>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <span>Vector B</span>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <table class="input-table">
+              <tr>
+                <td *ngFor="let i of matrix">
+                  <ion-input class='inputMatrix'
+                             type="number"
+                             [(ngModel)]="matrixB[i]"
+                             [ngModelOptions]="{standalone: true}">
+                  </ion-input>
+                </td>
+              </tr>
+            </table>
+          </ion-col>
+        </ion-row>
+      </ion-scroll>
+      <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col col-10>
+          <button ion-button
+                  (click)="help()"
+                  type="button">
+            Help
+          </button>
+          <button class="submit-button"
+                  ion-button
+                  type="submit">
+            Submit
+          </button>
+          <button ion-button
+                  (click)="theoricHelp()"
+                  type="button">
+            Theoric Help
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+  <div *ngIf="showResultUser">
+    <ion-scroll scrollY="true"
+                scrollX="true"
+                zoom="true"
+                style="height:100vh;">
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-label>
+                System Solution:
+              </ion-label>
+            </ion-card-header>
+            <ion-card-content>
+              <table class="table"
+                     align="center">
+                <tr class="table">
+                  <th *ngFor="let i of matrix"
+                      class="style-t-t">
+                    X{{i}}
+                  </th>
+                </tr>
+                <tr class="table">
+                  <td *ngFor="let j of resultArray"
+                      class="style-t-c">
+                    <p>{{j}}</p>
+                  </td>
+                </tr>
+              </table>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <button ion-button
+              (click)="visibleTable = !visibleTable"
+              *ngIf="enableShowTables"
+              type="button">
+        Show Tables
+      </button>
+      <div *ngIf="visibleTable">
+        <ion-row>
+          <ion-card>
+            <ion-card-header>
+              <ion-label>Array Z:</ion-label>
+            </ion-card-header>
+            <ion-card-content>
+              <table class="table"
+                     align="center">
+                <tr class="table">
+                  <th *ngFor="let i of resultArray"
+                      class="style-t-t">
+                    Z{{i}}
+                  </th>
+                </tr>
+                <tr class="table">
+                  <td *ngFor="let j of arrayZ"
+                      class="style-t-c">
+                    <p>{{j}}</p>
+                  </td>
+                </tr>
+              </table>
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+        <ion-row>
+          <ion-card>
+            <ion-card-header>
+              <ion-label>Matrix L:</ion-label>
+            </ion-card-header>
+            <ion-card-content>
+              <table class="table"
+                     align="center"
+                     class="matrix">
+                <tr *ngFor="let i of matrixL"
+                    class="table">
+                  <td *ngFor="let j of i"
+                      class="style-t-c">
+                    {{j}}
+                  </td>
+                </tr>
+              </table>
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+        <ion-row>
+          <ion-card>
+            <ion-card-header>
+              <ion-label>Matrix U:</ion-label>
+            </ion-card-header>
+            <ion-card-content>
+              <table class="table"
+                     align="center"
+                     class="matrix">
+                <tr *ngFor="let i of matrixU"
+                    class="table">
+                  <td *ngFor="let j of i"
+                      class="style-t-c">
+                    {{j}}
+                  </td>
+                </tr>
+              </table>
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+      </div>
+    </ion-scroll>
+  </div>
+</ion-content>

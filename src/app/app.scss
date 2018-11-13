@@ -1,16 +1,61 @@
 // http://ionicframework.com/docs/v2/theming/
+.auxGrid {
+  padding: 5px;
+  white-space: nowrap;
+}
 
+.text-t-t {
+  margin-top: 0%;
+  margin-bottom: 0%;
+  text-align: center;
+  font-style: oblique;
+  font-weight: bold;
+  color: white;
+}
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+.text-t-c {
+  margin-top: 0%;
+  margin-bottom: 0%;
+  text-align: left;
+}
+
+.style-t-t {
+  border-style: solid;
+  border-width: 1px;
+  background-color: cornflowerblue;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  border-color: black;
+}
+
+.style-t-c {
+  border-style: solid;
+  border-width: 1px;
+  background-color: white;
+  padding: 8px;
+  text-align: center;
+  color: black;
+  border-color: black;
+}
+
+.cell {
+  background-color: white;
+  margin: 3%;
+  width: fit-content;
+}
+
+.matrix {
+  background-color: rgb(235, 255, 255);
+}
+
+.inputMatrix {
+  background-color: white;
+  margin: 0.5px;
+  width: 50px;
+}
+
+.input-table {
+  margin-left: 13px;
+  background-color: black;
+}

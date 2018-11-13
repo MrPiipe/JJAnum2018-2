@@ -1,9 +1,6 @@
 import {Component} from '@angular/core';
 
-import {IonicPage, ModalController, NavController} from 'ionic-angular';
-
-import {Item} from '../../models/item';
-import {Items} from '../../providers';
+import {IonicPage, NavController} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -11,18 +8,49 @@ import {Items} from '../../providers';
   templateUrl: 'one-variable.html'
 })
 export class OneVariablePage {
-  currentItems: Item[];
+  items: any[];
 
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
-    this.currentItems = this.items.query();
+  constructor(private navCtrl: NavController) {
+    this.items = [
+      {
+        'name': 'Incremental Searches',
+        'about': 'Method to Obtain Initial Values',
+        'state': 'IncrementalSearchesPage'
+      },
+      {
+        'name': 'Bisection',
+        'about': 'Method by Intervals',
+        'state': 'BisectionPage'
+      },
+      {
+        'name': 'False Position',
+        'about': 'Method by Intervals',
+        'state': 'FalsePositionPage'
+      },
+      {
+        'name': 'Fixed Point',
+        'about': 'Open Iterative Method',
+        'state': 'FixedPointPage'
+      },
+      {
+        'name': 'Newton',
+        'about': 'Open Iterative Method',
+        'state': 'NewtonPage'
+      },
+      {
+        'name': 'Secant',
+        'about': 'Open Iterative Method',
+        'state': 'SecantPage'
+      },
+      {
+        'name': 'Multiple Roots',
+        'about': 'Open Iterative Method',
+        'state': 'MultipleRootsPage'
+      }
+    ];
   }
 
-  ionViewDidLoad() {
-  }
-
-  openItem(item: Item) {
-    this.navCtrl.push('ItemDetailPage', {
-      item: item
-    });
+  openItem(item: any) {
+    this.navCtrl.push(item.state);
   }
 }

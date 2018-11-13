@@ -1,12 +1,10 @@
 import {Component, ViewChild} from '@angular/core';
 
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {StatusBar} from '@ionic-native/status-bar';
 import {TranslateService} from '@ngx-translate/core';
 import {Config, Nav, Platform} from 'ionic-angular';
 
 import {FirstRunPage} from '../pages';
-import {Settings} from '../providers';
 
 
 @Component({
@@ -34,18 +32,40 @@ export class MyApp {
 
   pages: any[] = [
     {title: 'Welcome', component: 'WelcomePage'},
-    {title: 'Tabs', component: 'TabsPage'},
     {title: 'Cards', component: 'CardsPage'},
-    {title: 'Content', component: 'ContentPage'},
+    {title: 'TheoricHelp', component: 'TheoricHelpPage'},
+    {title: 'Grapher', component: 'GrapherPage'},
     {title: 'One Variable', component: 'OneVariablePage'},
-    {title: 'Menu', component: 'MenuPage'},
-    {title: 'Settings', component: 'SettingsPage'},
-    {title: 'Search', component: 'SearchPage'}
+    {title: 'Incremental Searches', component: 'IncrementalSearchesPage'},
+    {title: 'Bisection', component: 'BisectionPage'},
+    {title: 'Newton', component: 'NewtonPage'},
+    {title: 'FixedPoint', component: 'FixedPointPage'},
+    {title: 'FalsePosition', component: 'FalsePositionPage'},
+    {title: 'Secant', component: 'SecantPagePage'},
+    {title: 'MultipleRoots', component: 'MultipleRootsPage'},
+    {title: 'EquationSystemsPage', component: 'EquationSystemsPage'},
+    {title: 'Cholesky', component: 'CholeskyPage'},
+    {title: 'Doolittle', component: 'DoolittlePage'},
+    {title: 'Crout', component: 'CroutPage'},
+    {title: 'GaussSimpleFactorization', component: 'GaussSimpleFactorizationPage'},
+    {title: 'GaussPartialPivotFactorization', component: 'GaussPartialPivotFactorizationPage'},
+    {title: 'GaussSimpleElimination', component: 'GaussSimpleEliminationPage'},
+    {title: 'GaussPartialPivotElimination', component: 'GaussPartialPivotEliminationPage'},
+    {title: 'GaussTotalPivotElimination', component: 'GaussTotalPivotEliminationPage'},
+    {title: 'Jacobi', component: 'JacobiPage'},
+    {title: 'Seidel', component: 'SeidelPage'},
+    {title: 'SOR', component: 'SorPage'},
+    {title: 'Interpolation', component: 'InterpolationPage'},
+    {title: 'NewtonInterpolation', component: 'NewtonInterpolationPage'},
+    {title: 'Lagrange', component: 'LagrangePage'},
+    {title: 'Vandermonde', component: 'VandermondePage'},
+    {title: 'Linear Spline', component: 'LinearSplinePage'},
+    {title: 'Cuadratic Spline', component: 'CuadraticSplinePage'},
+    {title: 'Cubic Spline', component: 'CubicSplinePage'}
   ]
 
-  constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(private translate: TranslateService, platform: Platform, private config: Config, private splashScreen: SplashScreen) {
     platform.ready().then(() => {
-      this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
     this.initTranslate();
