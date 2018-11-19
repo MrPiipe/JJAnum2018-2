@@ -32,6 +32,13 @@ export class CardsPage {
         },
         nextState: 'InterpolationPage',
         content: 'In this section you can find the methods you need to solve Interpolation Problems'
+      },
+      {
+        user: {
+          name: 'Grapher'
+        },
+        nextState: 'GrapherPage',
+        content: 'In this section you can find the Grapher to check all the functions you need.'
       }
     ];
 

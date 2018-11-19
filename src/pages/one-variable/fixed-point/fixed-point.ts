@@ -27,6 +27,7 @@ export class FixedPointPage {
   visibleResult: boolean;
   enableTolerance: boolean;
   enableErrorChoice: boolean;
+  fixedPoint: boolean;
 
   constructor(private apiService: ApiService, private alert: AlertService, private navCtrl: NavController) {
     this.title = 'Fixed Point';
@@ -34,6 +35,7 @@ export class FixedPointPage {
     this.enableErrorChoice = true;
     this.visibleTable = false;
     this.tableTitles = ['i', 'Xi', 'Error'];
+    this.fixedPoint = true;
   }
 
   help() {
@@ -106,6 +108,9 @@ export class FixedPointPage {
       this.showResultUser = true;
       this.finalResult = 'An approximation to the root is: ' + this.results;
     } else {
+      if (this.table.length !== 0) {
+        this.visibleResult = true;
+      }
       this.alert.show('Fail', response.error);
     }
   }

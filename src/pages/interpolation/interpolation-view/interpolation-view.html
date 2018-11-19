@@ -127,7 +127,7 @@
             <ion-card-header>The Function:</ion-card-header>
             <ion-card-content *ngIf="!spline">{{finalResult}}</ion-card-content>
             <ion-card-content *ngIf="spline">
-              <p *ngFor="let item of finalResult">{{item}}</p>
+              <p *ngFor="let item of finalResult">{{item[0]}} | {{item[1]}}</p>
             </ion-card-content>
           </ion-card>
         </ion-col>

@@ -12,8 +12,13 @@
       <ion-row>
         <ion-col col-12>
           <ion-item>
-            <ion-label for="viewFunction">
+            <ion-label *ngIf="!fixedPoint"
+                       for="viewFunction">
               f(x) =
+            </ion-label>
+            <ion-label *ngIf="fixedPoint"
+                       for="viewFunction">
+              g(x) =
             </ion-label>
             <ion-input type="text"
                        [(ngModel)]="viewFunction"

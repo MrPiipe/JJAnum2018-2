@@ -111,6 +111,9 @@ export class BisectionPage {
       this.showResultUser = true;
       this.finalResult = 'An approximation to the root is: ' + this.results;
     } else {
+      if (this.table.length !== 0) {
+        this.visibleResult = true;
+      }
       this.alert.show('Fail', response.error);
     }
   }

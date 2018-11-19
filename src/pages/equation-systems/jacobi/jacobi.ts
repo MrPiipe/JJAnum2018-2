@@ -28,6 +28,7 @@ export class JacobiPage {
   showForm: boolean;
   results: any;
   table: any;
+  showFinalResult: boolean;
 
   constructor(private apiService: ApiService, private alert: AlertService, private navCtrl: NavController) {
     this.title = 'Jacobi';
@@ -118,8 +119,13 @@ export class JacobiPage {
 
   private populateTable(response) {
     if (response.error) {
+      if (response.iterations.length !== 0) {
+        this.showResultUser = true;
+        this.table = response.iterations;
+      }
       this.alert.show('Fail', response.error);
     } else {
+      this.showFinalResult = true;
       this.showResultUser = true;
       this.results = response.aproximations[0];
       this.table = response.iterations;

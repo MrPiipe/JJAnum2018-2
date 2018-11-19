@@ -1,12 +1,10 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
-import {AlertService} from './alert.service';
-
 @Injectable()
 export class ApiService {
 
-  constructor(private http: HttpClient, private alert: AlertService) {
+  constructor(private http: HttpClient) {
   }
 
   get(url) {

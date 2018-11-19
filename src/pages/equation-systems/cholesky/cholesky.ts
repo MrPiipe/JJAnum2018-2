@@ -50,6 +50,7 @@ export class CholeskyPage {
     const content = `<ul>
                     <li>Matrix A must be positively defined</li>
                     <li>Matrix A must be invertible</li>
+                    <li>Cholesky might return a matrix with complex numbers</li>
                     </ul>`;
     this.alert.show(title, content);
   }

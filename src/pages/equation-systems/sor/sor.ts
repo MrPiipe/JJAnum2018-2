@@ -30,6 +30,7 @@ export class SorPage {
   table: any;
   w: string;
   enableW: boolean;
+  showFinalResult: boolean;
 
   constructor(private apiService: ApiService, private alert: AlertService, private navCtrl: NavController) {
     this.title = 'SOR';
@@ -124,8 +125,13 @@ export class SorPage {
 
   private populateTable(response) {
     if (response.error) {
+      if (response.iterations.length !== 0) {
+        this.showResultUser = true;
+        this.table = response.iterations;
+      }
       this.alert.show('Fail', response.error);
     } else {
+      this.showFinalResult = true;
       this.showResultUser = true;
       this.results = response.aproximations[0];
       this.table = response.iterations;

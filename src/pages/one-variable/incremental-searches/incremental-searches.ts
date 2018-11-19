@@ -103,6 +103,9 @@ export class IncrementalSearchesPage {
         this.finalResult = this.results.length + ' Roots were found';
       }
     } else {
+      if (this.table.length !== 0) {
+        this.visibleResult = true;
+      }
       this.alert.show('Fail', response.error);
     }
   }
